@@ -29,6 +29,10 @@ void GetPlayerOption(int& option)
 		cout << "Option 3: Scissors\n";
 		cout << "Option 4: Quit\n";
 		cin >> option;
+		if (option < 1 || option > 4)
+		{
+			cout << "Please enter an option between 1 - 4.\n";
+		}
 	} while (option < 1 || option > 4);
 }
 
