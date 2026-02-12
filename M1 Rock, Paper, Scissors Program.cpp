@@ -6,6 +6,8 @@
 using namespace std;
 
 void GetPlayerOption(int& option);
+int GetRoundWinner(int &option, int &choice);
+void UpdateScore(int result, int& option, int& choice);
 
 int main()
 {
@@ -15,6 +17,8 @@ int main()
 	choice = randomInt(engine);
 
 	GetPlayerOption(option);
+	GetRoundWinner(option, choice);
+	
 
 	return 0;
 }
@@ -34,6 +38,30 @@ void GetPlayerOption(int& option)
 			cout << "Please enter an option between 1 - 4.\n";
 		}
 	} while (option < 1 || option > 4);
+}
+
+int GetRoundWinner(int &option, int &choice)
+{
+	if ((option == 1 && choice == 3) ||
+		(option == 2 && choice == 1) ||
+		(option == 3 && choice == 2))
+	{
+		return 1;
+	}
+	if (option == choice)
+	{
+		return 0;
+	}
+	else
+	{
+		return 2;
+	}
+}
+
+void UpdateScore(int result, int &option, int &choice)
+{
+	result = GetRoundWinner(option, choice);
+
 }
 
 
