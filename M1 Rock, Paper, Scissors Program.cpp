@@ -7,18 +7,20 @@ using namespace std;
 
 void GetPlayerOption(int& option);
 int GetRoundWinner(int &option, int &choice);
-void UpdateScore(int result, int& option, int& choice);
+void UpdateScore(int &result, int& option, int& choice, int& player, int& computer);
 
 int main()
 {
-	int option, choice;
+	int option, choice, player = 0, computer = 0, result;
 	random_device engine;
 	uniform_int_distribution<int> randomInt(1, 3);
 	choice = randomInt(engine);
 
 	GetPlayerOption(option);
 	GetRoundWinner(option, choice);
-	
+	UpdateScore(result, option, choice, player, computer);
+	cout << player;
+	cout << computer;
 
 	return 0;
 }
@@ -58,10 +60,17 @@ int GetRoundWinner(int &option, int &choice)
 	}
 }
 
-void UpdateScore(int result, int &option, int &choice)
+void UpdateScore(int &result, int &option, int &choice, int &player, int &computer)
 {
 	result = GetRoundWinner(option, choice);
-
+	if (result == 1)
+	{
+		player++;
+	}
+	if (result == 2)
+	{
+		computer++;
+	}
 }
 
 
