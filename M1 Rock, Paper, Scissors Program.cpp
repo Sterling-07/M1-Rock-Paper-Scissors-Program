@@ -7,20 +7,38 @@ using namespace std;
 
 void GetPlayerOption(int& option);
 int GetRoundWinner(int &option, int &choice);
-void UpdateScore(int &result, int& option, int& choice, int& player, int& computer);
+void UpdateScore(int &result, int& option, int& choice, int &player, int &computer);
+void GetTournamentWinner(int &player, int &computer);
 
 int main()
 {
-	int option, choice, player = 0, computer = 0, result;
-	random_device engine;
-	uniform_int_distribution<int> randomInt(1, 3);
-	choice = randomInt(engine);
+	int option, choice, player = 0, computer = 0, result, trial;
 
-	GetPlayerOption(option);
-	GetRoundWinner(option, choice);
-	UpdateScore(result, option, choice, player, computer);
-	cout << player;
-	cout << computer;
+	do
+	{
+		random_device engine;
+		uniform_int_distribution<int> randomInt(1, 3);
+		choice = randomInt(engine);
+
+		GetPlayerOption(option);
+		GetRoundWinner(option, choice);
+		UpdateScore(result, option, choice, player, computer);
+		cout << "Player score: " << player << "\n";
+		cout << "Computer score: " << computer << "\n";
+
+		cout << "Enter 1 if you would like to play again, enter 2 if you would like to quit the program.\n";
+		cin >> trial;
+		if (trial == 2)
+		{
+			cout << "Tournament Results: \n";
+			GetTournamentWinner(player, computer);
+		}
+		if (trial > 2 || trial < 1)
+		{
+			cout << "Please enter either 1 to play again, or 2 to quit the program.\n";
+		}
+
+	} while (trial == 1);
 
 	return 0;
 }
@@ -70,6 +88,24 @@ void UpdateScore(int &result, int &option, int &choice, int &player, int &comput
 	if (result == 2)
 	{
 		computer++;
+	}
+}
+
+void GetTournamentWinner(int& player, int& computer)
+{
+	if (player > computer)
+	{
+		cout << "The player has won the tournament.\n";
+		cout << "The player had a total of " << player << " win(s).\n";
+	}
+	if (player < computer)
+	{
+		cout << "The computer has won the tournament.\n";
+		cout << "The computer had a total of " << computer << " win(s).\n";
+	}
+	if (player == computer)
+	{
+		cout << "The tournament has ended in a draw.\n";
 	}
 }
 
