@@ -43,20 +43,23 @@ int main()
 		cout << "Computer score: " << computer << "\n";
 
 		//Allows the player to choose to quit the program or play again.
-		cout << "Enter 1 if you would like to play again, enter 2 if you would like to quit the program.\n";
-		cin >> trial;
+		do
+		{
+			cout << "Enter 1 if you would like to play again, enter 2 if you would like to quit the program.\n";
+			cin >> trial;
+			//If the player doesn't enter 1 to play again or 2 to quit the program, this message is displayed. 
+			if (trial > 2 || trial < 1)
+			{
+				cout << "Please enter either 1 to play again, or 2 to quit the program.\n";
+			}
+		} while (trial > 2 || trial < 1);
+
 		//If player chooses to quit the program, the tournament results are called and displayed here. 
 		if (trial == 2)
 		{
 			cout << "Tournament Results: \n";
 			GetTournamentWinner(player, computer);
 		}
-		//If the player doesn't enter 1 to play again or 2 to quit the program, this message is displayed. 
-		if (trial > 2 || trial < 1)
-		{
-			cout << "Please enter either 1 to play again, or 2 to quit the program.\n";
-		}
-
 	} while (trial == 1);
 
 	return 0;
